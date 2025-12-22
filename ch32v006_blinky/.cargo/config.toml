@@ -1,0 +1,27 @@
+
+[build]
+target = "riscv32e-unknown-none-elf"
+
+[target.'cfg(all(target_arch = "riscv32", target_os = "none"))']
+# wlink doesn't support ch32v006 (yet).
+# In order to use minichlink we need to make a bin file first
+# run.sh is:
+# riscv64-unknown-elf-objcopy $1 -O binary out.bin
+# minichlink -w ./out.bin flash -b 
+runner = "./run.sh"
+#
+# runner = "wlink -v flash --enable-sdi-print --watch-serial"
+
+# there is no RV32EmC target. build one using RV32E as a base.
+[target."riscv32e-unknown-none-elf"]
+rustflags = [
+    "-C", "link-arg=-Tlink.x",
+    "-C", "target-feature=+c",
+    "-C", "target-feature=+zmmul",
+    "-C", "target-feature=+zicsr",
+    "-Z", "trap-unreachable=no",
+    "-C", "no-vectorize-loops",
+]
+
+[unstable]
+build-std = ["core"]

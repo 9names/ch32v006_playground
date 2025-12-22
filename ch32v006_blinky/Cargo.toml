@@ -1,0 +1,40 @@
+cargo-features = ["panic-immediate-abort"]
+
+[package]
+name = "ch32v006_blinky"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ch32-hal = { git = "https://github.com/9names/ch32-hal", branch = "ch32v006", version = "0.1.0", features = [
+    "ch32v006k8u6",
+    "memory-x",
+    "embassy",
+    "time-driver-tim2",
+    "rt",
+] }
+qingke = { version = "0.6.1", features = ["critical-section-impl", "defmt"] }
+qingke-rt = { version = "0.6.1", features = ["highcode"] }
+
+embassy-executor = { version = "0.9.1", features = [
+    "arch-spin",
+    "executor-thread",
+] }
+embassy-time = "0.5.0"
+
+embedded-hal = "1.0.0"
+panic-halt = "1.0"
+
+[profile.release]
+strip = false
+debug = 2
+lto = true
+opt-level = "s"
+panic = "immediate-abort"
+
+[profile.dev]
+overflow-checks = false
+debug = 2
+opt-level = "s"
+lto = true
+panic = "immediate-abort"
