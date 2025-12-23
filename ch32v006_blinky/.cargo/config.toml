@@ -11,6 +11,7 @@ rustflags = [
     "-C", "link-arg=-Tlink.x",
     "-C", "target-feature=+c",
     "-C", "target-feature=+zmmul",
+    "-C", "target-feature=+xwchc",
     "-C", "target-feature=+zicsr",
     "-Z", "trap-unreachable=no",
     "-C", "no-vectorize-loops",
