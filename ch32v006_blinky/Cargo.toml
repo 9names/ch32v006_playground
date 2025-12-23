@@ -8,6 +8,7 @@ edition = "2024"
 [dependencies]
 ch32-hal = { git = "https://github.com/9names/ch32-hal", branch = "ch32v006", version = "0.1.0", features = [
     "ch32v006k8u6",
+    # "ch32v006f8p6",
     "memory-x",
     "embassy",
     "time-driver-tim2",
@@ -23,18 +24,23 @@ embassy-executor = { version = "0.9.1", features = [
 embassy-time = "0.5.0"
 
 embedded-hal = "1.0.0"
-panic-halt = "1.0"
+# If you don't want panic messages, use this instead of the custom panic handler in main
+# panic-halt = "1.0"
 
 [profile.release]
 strip = false
 debug = 2
 lto = true
 opt-level = "s"
-panic = "immediate-abort"
+panic = "abort"
+
+# immediate-abort is so much smaller, but you lose panic messages.
+# it's not worth it during development, but since we're on nightly it is an option for release
+# panic = "immediate-abort"
 
 [profile.dev]
 overflow-checks = false
 debug = 2
 opt-level = "s"
 lto = true
-panic = "immediate-abort"
+panic = "abort"

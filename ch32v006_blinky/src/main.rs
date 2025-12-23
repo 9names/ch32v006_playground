@@ -10,7 +10,14 @@ use ch32_hal as hal;
 use hal::delay::Delay;
 use hal::gpio::{Level, Output};
 use hal::println;
-use panic_halt as _;
+
+#[panic_handler]
+fn _panic(info: &core::panic::PanicInfo) -> ! {
+    println!("{info}",);
+    loop{
+        qingke::riscv::asm::nop();
+    };
+}
 
 #[qingke_rt::entry]
 fn main() -> ! {
