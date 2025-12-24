@@ -41,7 +41,7 @@ checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 [[package]]
 name = "ch32-hal"
 version = "0.1.0"
-source = "git+https://github.com/9names/ch32-hal?branch=ch32v006#87fede9cbce11e07ffd968f652bcf4ef5f4a6b54"
+source = "git+https://github.com/ch32-rs/ch32-hal?rev=2d3875bb90f96e253f5086ef92555fd2a20e4ede#2d3875bb90f96e253f5086ef92555fd2a20e4ede"
 dependencies = [
  "bitmaps",
  "ch32-metapac",
@@ -85,7 +85,6 @@ dependencies = [
  "embassy-executor",
  "embassy-time",
  "embedded-hal 1.0.0",
- "panic-halt",
  "qingke",
  "qingke-rt",
 ]
@@ -467,12 +466,6 @@ checksum = "071dfc062690e90b734c0b2273ce72ad0ffa95f0c74596bc250dcfd960262841"
 dependencies = [
  "autocfg",
 ]
-
-[[package]]
-name = "panic-halt"
-version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a513e167849a384b7f9b746e517604398518590a9142f4846a32e3c2a4de7b11"
 
 [[package]]
 name = "paste"
