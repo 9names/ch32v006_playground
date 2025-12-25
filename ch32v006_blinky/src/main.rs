@@ -14,9 +14,9 @@ use hal::println;
 #[panic_handler]
 fn _panic(info: &core::panic::PanicInfo) -> ! {
     println!("{info}",);
-    loop{
+    loop {
         qingke::riscv::asm::nop();
-    };
+    }
 }
 
 #[qingke_rt::entry]
@@ -33,14 +33,17 @@ fn main() -> ! {
 
     // For HSI we need to mess with AHB divider (48Mhz is too much? need to check datasheet)
     use ch32_hal::pac::rcc::vals::Hpre;
+    use ch32_hal::pac::rcc::vals::Ppre;
     let mut config = ch32_hal::Config {
         rcc: hal::rcc::Config::SYSCLK_FREQ_48MHZ_HSI,
         ..Default::default()
     };
+    // println!("{config:?}");
     config.rcc.ahb_pre = Hpre::DIV2;
+    //config.rcc.apb2_pre = Ppre::DIV2;
     let p = hal::init(config);
 
-    println!("still alive!");
+    //println!("still alive!");
 
     let mut delay = Delay;
 
