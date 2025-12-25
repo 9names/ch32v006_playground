@@ -8,7 +8,7 @@ runner = "wlink flash --enable-sdi-print --watch-serial"
 # there is no RV32EmC target. build one using RV32E as a base.
 [target."riscv32e-unknown-none-elf"]
 rustflags = [
-    "-C", "link-arg=-Tlink.x",
+    "-C", "link-arg=-Tlink-highcode.ld",
     "-C", "link-arg=--print-memory-usage",
     "-W", "linker-messages",
     "-C", "target-feature=+c",
