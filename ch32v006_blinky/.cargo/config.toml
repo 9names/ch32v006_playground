@@ -9,6 +9,8 @@ runner = "wlink flash --enable-sdi-print --watch-serial"
 [target."riscv32e-unknown-none-elf"]
 rustflags = [
     "-C", "link-arg=-Tlink.x",
+    "-C", "link-arg=--print-memory-usage",
+    "-W", "linker-messages",
     "-C", "target-feature=+c",
     "-C", "target-feature=+zmmul",
     "-C", "target-feature=+xwchc",
