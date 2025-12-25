@@ -3,8 +3,8 @@ INCLUDE memory.ld
 /* This will usually be provided by a device crate generated using svd2rust (see `device.x`) */
 INCLUDE device.ld
 
-PROVIDE(_stext = ORIGIN(REGION_TEXT));
-PROVIDE(_stack_start = ORIGIN(REGION_STACK) + LENGTH(REGION_STACK));
+PROVIDE(_stext = ORIGIN(FLASH));
+PROVIDE(_stack_start = ORIGIN(RAM) + LENGTH(RAM));
 PROVIDE(_max_hart_id = 0);
 PROVIDE(_hart_stack_size = 2K);
 PROVIDE(_heap_size = 0);
